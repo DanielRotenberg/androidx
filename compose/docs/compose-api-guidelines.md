@@ -470,10 +470,10 @@ Modifier APIs MUST NOT expose their Modifier.Element interface implementation ty
 Modifier APIs MUST be exposed as factory functions following this style:
 
 ```kotlin
-fun Modifier.myModifier(
+fun Modifier.YourModifier(
     param1: ...,
     paramN: ...
-): Modifier = then(MyModifierImpl(param1, ... paramN))
+): Modifier = then(YourModifierImpl(param1, ... paramN))
 ```
 
 ### Composed modifiers
@@ -481,7 +481,7 @@ fun Modifier.myModifier(
 Modifiers that must take part in composition (for example, to read `CompositionLocal` values, maintain element-specific instance state or manage object lifetimes) can use the `Modifier.composed {}` API to create a modifier that is a modifier instance factory:
 
 ```kotlin
-fun Modifier.myModifier(): Modifier = composed {
+fun Modifier.YourModifier(): Modifier = composed {
     val color = LocalTheme.current.specialColor
     backgroundColor(color)
 }
@@ -496,10 +496,10 @@ fun Modifier.modifierWithState(): Modifier = composed {
 }
 
 // ...
-val myModifier = someModifiers.modifierWithState()
+val YourModifier = someModifiers.modifierWithState()
 
-Text("Hello", modifier = myModifier)
-Text("World", modifier = myModifier)
+Text("Hello", modifier = YourModifier)
+Text("World", modifier = YourModifier)
 ```
 
 As a result, **Jetpack Compose framework development and Library development** SHOULD use `Modifier.composed {}` to implement composition-aware modifiers, and SHOULD NOT declare modifier extension factory functions as `@Composable` functions themselves.
@@ -558,8 +558,8 @@ fun Checkbox(
 
 // Usage: (caller mutates optIn and owns the source of truth)
 Checkbox(
-    myState.optIn,
-    onToggle = { myState.optIn = !myState.optIn }
+    YourState.optIn,
+    onToggle = { YourState.optIn = !YourState.optIn }
 )
 ```
 
@@ -793,7 +793,7 @@ interface BarState {
     var avatarUrl: String
 }
 
-class MyState(
+class YourState(
     name: String,
     avatarUrl: String
 ) : FooState, BarState {
