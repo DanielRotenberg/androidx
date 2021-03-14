@@ -44,7 +44,7 @@ The Kotlin Coding Conventions establish a standard of consistency for the Kotlin
 
 ### Why
 
-Jetpack Compose discourages the use and creation of singletons or companion object state that cannot be treated as _stable_ over time and across threads, reducing the usefulness of a distinction between singleton objects and other forms of constants. This forms a consistent expectation of API shape for consuming code whether the implementation detail is a top-level `val`, a `companion object`, an `enum class`, or a `sealed class` with nested `object` subclasses. `myFunction(Foo)` and `myFunction(Foo.Bar)` carry the same meaning and intent for calling code regardless of specific implementation details.
+Jetpack Compose discourages the use and creation of singletons or companion object state that cannot be treated as _stable_ over time and across threads, reducing the usefulness of a distinction between singleton objects and other forms of constants. This forms a consistent expectation of API shape for consuming code whether the implementation detail is a top-level `val`, a `companion object`, an `enum class`, or a `sealed class` with nested `object` subclasses. `yourFunction(Foo)` and `yourFunction(Foo.Bar)` carry the same meaning and intent for calling code regardless of specific implementation details.
 
 Library and app code with a strong existing investment in `CAPITALS_AND_UNDERSCORES` in their codebase MAY opt for local consistency with that pattern instead.
 
@@ -491,8 +491,8 @@ Composed modifiers are composed at each point of application to an element; the 
 
 ```kotlin
 fun Modifier.modifierWithState(): Modifier = composed {
-    val elementSpecificState = remember { MyModifierState() }
-    MyModifier(elementSpecificState)
+    val elementSpecificState = remember { YourModifierState() }
+    YourModifier(elementSpecificState)
 }
 
 // ...
